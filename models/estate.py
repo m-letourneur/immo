@@ -1,5 +1,5 @@
 import uuid
-import db
+from app_backend import db
 
 
 class Estate(db.Model):
@@ -18,7 +18,7 @@ class Estate(db.Model):
     rooms_description = db.Column(db.String(255), nullable=True)
     owner = db.Column(db.String(255), nullable=True)
 
-    def __init__(self, creator_uuid, description='', city, nb_rooms=0, rooms_description=None, owner=None):
+    def __init__(self, creator_uuid, description='', city, nb_rooms, rooms_description=None, owner=None):
         """
         Initialization of the attributes when one instance is created
 
@@ -56,11 +56,11 @@ class Estate(db.Model):
 
         """
         self.creator_uuid = creator_uuid
-        self.description = description
-        self.city = city
+        self.description = description.lower()
+        self.city = city.lower()
         self.nb_rooms = nb_rooms
-        self.rooms_description = rooms_description
-        self.owner = owner
+        self.rooms_description = rooms_description.lower()
+        self.owner = owner.lower()
 
     def __repr__(self):
         """

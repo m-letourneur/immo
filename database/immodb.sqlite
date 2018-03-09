@@ -1,12 +1,12 @@
 CREATE TABLE users(
-	uuid INT PRIMARY KEY NOT NULL, 
+	id INT PRIMARY KEY NOT NULL, 
 	first_name TEXT NOT NULL,
 	last_name TEXT NOT NULL,
 	birth_date DATE NOT NULL
 	);
 
 CREATE TABLE estates(
-	uuid INT PRIMARY KEY NOT NULL,
+	id INT PRIMARY KEY NOT NULL,
 	creator_uuid INT NOT NULL,
 	description TEXT,
 	city TEXT NOT NULL,
@@ -14,12 +14,6 @@ CREATE TABLE estates(
 	rooms_description TEXT,
 	owner TEXT
 	);
-
-INSERT INTO users (uuid, first_name, last_name, birth_date)
-VALUES (0, 'zero first name', 'zero last name', '1998-10-10');
-
-INSERT INTO estates (uuid, creator_uuid, description, city, nb_rooms, rooms_description, owner)
-VALUES (0, 0, 'zero description', 'zero city', 0, 'zero description', 'zero owner');
 
 .mode csv
 .separator ";"

@@ -55,4 +55,11 @@ Here are the commands to run in a terminal
 
 #### Run the API
 > python3.6 api.py runserver
-	
+
+
+
+## To do
+
+- Create a script to initilize the db
+- Finish resources userapi and estates and test
+- Add exceptions for duplicates, ...(?)
