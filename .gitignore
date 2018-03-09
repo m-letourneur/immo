@@ -2,3 +2,6 @@
 
 #Compiled python
 *.pyc
+
+# Database
+database/immodb.db
