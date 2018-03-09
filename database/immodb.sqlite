@@ -10,7 +10,7 @@ CREATE TABLE estates(
 	creator_uuid INT NOT NULL,
 	description TEXT,
 	city TEXT NOT NULL,
-	nb_rooms INT,
+	nb_rooms INT NOT NULL,
 	rooms_description TEXT,
 	owner TEXT
 	);

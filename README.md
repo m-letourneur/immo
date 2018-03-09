@@ -26,7 +26,33 @@ All the fields are mandatory for the creation of a user.
 	uuid (primary key)
 	creator_uuid
 	city
+	nb_rooms
 	
+## Install and run the API on Local host
 
-	
+Here are the commands to run in a terminal
+> cd 
+>
+> mkdir immo
+
+#### Clone the repository
+> git clone [git]()
+>
+> cd immo 
+
+#### Create a virtual environment to work on
+> mkvirtualenv --python=`which python3.6` immo
+>
+> pip install -r requirements.txt
+
+#### Initialize the database with the manager
+> python3.6 api.py db init
+> 
+> python3.6 api.py db migrate
+> 
+> python3.6 api.py db upgrade
+> 
+
+#### Run the API
+> python3.6 api.py runserver
 	
