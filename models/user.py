@@ -5,6 +5,11 @@ from app_backend import db
 class User(db.Model):
     """
     User model
+
+    A user is described by his first and last names, and his date of birth
+    The three attributes are mandatory for instantiation
+
+    String fields are all lowercased at creation 
     """
     __tablename__ = 'users'
     __table_args__ = {'extend_existing': True}
@@ -41,7 +46,7 @@ class User(db.Model):
         """
         self.first_name = first_name.lower()
         self.last_name = last_name.lower()
-        self.birth_date = birth_date.lower()
+        self.birth_date = birth_date
 
     def __repr__(self):
         """

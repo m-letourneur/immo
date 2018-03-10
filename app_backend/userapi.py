@@ -44,7 +44,7 @@ class UserAPI(Resource):
         return jsonify({'status': 200,
                         'method': 'HTTP POST',
                         'uri': '/userapi',
-                        'user id': user_.id,
+                        'user_id': user_.id,
                         'first_name': user_.first_name,
                         'last_name': user_.last_name,
                         'birth_date': str(user_.birth_date)
@@ -62,10 +62,9 @@ class UserAPI(Resource):
             Validation of modification
 
         """
-
         id_ = request.json.get('id')
         # Retrieve the user
-        user_ = User.query.get(id_)
+        user_ = User.query.get(id_)  # future: raise exception if not found
 
         for key in request.json.keys():
             if key == 'first_name':
@@ -89,7 +88,7 @@ class UserAPI(Resource):
         return jsonify({'status': 200,
                         'method': 'HTTP PUT',
                         'uri': '/userapi',
-                        'user id': user_.id,
+                        'user_id': user_.id,
                         'first_name': user_.first_name,
                         'last_name': user_.last_name,
                         'birth_date': str(user_.birth_date)
