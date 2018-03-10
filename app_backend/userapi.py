@@ -23,7 +23,7 @@ class UserAPI(Resource):
         -------
 
         _ : JSON
-                                        Validation of creation
+            Validation of creation
 
         """
         # All the fields are mandatory here
@@ -64,7 +64,14 @@ class UserAPI(Resource):
         """
         id_ = request.json.get('id')
         # Retrieve the user
-        user_ = User.query.get(id_)  # future: raise exception if not found
+        user_ = User.query.get(id_)
+        if user_ is None:
+            return jsonify({'status': 403,
+                            'method': 'HTTP PUT',
+                            'uri': '/userapi',
+                            'user_uuid': id_,
+                            'message': 'Invalid user uuid'
+                            })
 
         for key in request.json.keys():
             if key == 'first_name':

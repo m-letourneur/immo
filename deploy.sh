@@ -10,8 +10,8 @@ git checkout dev
 
 # Create a virtual environment to work on
 source `which virtualenvwrapper.sh`
-mkvirtualenv --python=`which python3.6` immo2
-source $WORKON_HOME/immo2/bin/activate immo2
+mkvirtualenv --python=`which python3.6` immo
+source $WORKON_HOME/immo2/bin/activate immo
 # Install python packages
 pip install -r "requirements.txt"
 

@@ -1,8 +1,9 @@
 from app_backend import api, db
 from flask_restful import Resource
-from flask import jsonify, request
+from flask import jsonify, request, Response
 from models.estate import Estate
 from models.user import User
+from flask import abort
 
 
 class EstateAPI(Resource):
@@ -32,6 +33,16 @@ class EstateAPI(Resource):
         """
         # Mandatory fields
         creator_uuid = request.json.get('creator_uuid')
+        # Check if the id of the user is valid
+        user_ = User.query.get(creator_uuid)
+        if user_ is None:
+            return jsonify({'status': 403,
+                        'method': 'HTTP POST',
+                        'uri': '/estateapi',
+                        'creator_uuid': creator_uuid,
+                        'message': 'Invalid user uuid (creator_uuid)'
+                        })
+
         city = request.json.get('city')
         nb_rooms = request.json.get('nb_rooms')
 
@@ -56,7 +67,7 @@ class EstateAPI(Resource):
 
         return jsonify({'status': 200,
                         'method': 'HTTP POST',
-                        'uri': '/userapi',
+                        'uri': '/estateapi',
                         'estate_id': estate_.id,
                         'creator_uuid': estate_.creator_uuid,
                         'city': estate_.city,
@@ -84,7 +95,14 @@ class EstateAPI(Resource):
 
         # Retrieve the estate
         estate_ = Estate.query.get(id_)
-
+        if estate_ is None:
+            return jsonify({'status': 403,
+                        'method': 'HTTP PUT',
+                        'uri': '/estateapi',
+                        'estate_uuid': id_,
+                        'message': 'Invalid user estate_uuid)'
+                        })
+            
         # Check if current user is the creator of the entry
         authorized = estate_.creator_uuid == creator_uuid
 
@@ -109,8 +127,8 @@ class EstateAPI(Resource):
             db.session.commit()
 
             return jsonify({'status': 200,
-                            'method': 'HTTP POST',
-                            'uri': '/userapi',
+                            'method': 'HTTP PUT',
+                            'uri': '/estateapi',
                             'estate_id': estate_.id,
                             'creator_uuid': estate_.creator_uuid,
                             'city': estate_.city,
@@ -124,10 +142,9 @@ class EstateAPI(Resource):
         # Operation is forbidden
         else:
             return jsonify({'status': 403,
-                            'method': 'HTTP POST',
-                            'uri': '/userapi',
+                            'method': 'HTTP PUT',
+                            'uri': '/estateapi',
                             'estate_id': estate_.id,
-                            'creator_uuid': estate_.creator_uuid,
                             'message': ('Forbidden modification of estate. '
                                         + 'Mismatch between client user and'
                                         + 'estate creator.')
@@ -168,7 +185,7 @@ class EstateListAPI(Resource):
 
         return jsonify({'status': 200,
                         'method': 'HTTP GET',
-                        'uri': '/estatepi',
+                        'uri': '/estateapi',
                         'city': city_,
                         'list of estates in city': str(list_)
                         })
