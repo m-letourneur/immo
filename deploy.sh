@@ -33,6 +33,3 @@ python3.6 api.py db upgrade
 
 # Run the API
 python3.6 api.py runserver
-
-# Initialize the database with entries
-python.3.6 "database/db_init.py"
