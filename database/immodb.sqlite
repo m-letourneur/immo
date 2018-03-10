@@ -8,9 +8,9 @@ CREATE TABLE users(
 CREATE TABLE estates(
 	id INT PRIMARY KEY NOT NULL,
 	creator_uuid INT NOT NULL,
-	description TEXT,
 	city TEXT NOT NULL,
 	nb_rooms INT NOT NULL,
+	description TEXT,
 	rooms_description TEXT,
 	owner TEXT
 	);

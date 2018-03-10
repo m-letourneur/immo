@@ -15,9 +15,9 @@ All the fields are mandatory for the creation of a user.
 ### Estate
 * 	uuid INT: unique ID for the estate entry
 * 	creator_uuid INT: unique ID of the user who created the estate entry
-* 	description TEXT: description of the estate
 * 	city TEXT NOT NULL: city location
 * 	nb_rooms INT: number of rooms
+* 	description TEXT: description of the estate
 * 	rooms_description TEXT: description of rooms
 * 	owner TEXT: owner of the estate
 
@@ -27,9 +27,17 @@ All the fields are mandatory for the creation of a user.
 	creator_uuid
 	city
 	nb_rooms
-	
-## Install and run the API on Local host
 
+## Services
+
+TO WRITE
+
+## Install and run the API on Local host
+### METHOD 1 - script
+Run in console:
+> bash deploy.sh
+
+### Method 2 - manual setup
 Here are the commands to run in a terminal
 > cd 
 >
@@ -46,6 +54,16 @@ Here are the commands to run in a terminal
 > pip install -r requirements.txt
 
 #### Initialize the database with the manager
+> cd database/
+
+> sqlite3
+##### With SQLITE3
+> .read immodb.sqlite
+> .quit
+
+##### Back to console
+> cd ..
+
 > python3.6 api.py db init
 > 
 > python3.6 api.py db migrate
@@ -56,7 +74,12 @@ Here are the commands to run in a terminal
 #### Run the API
 > python3.6 api.py runserver
 
+#### Initialize the database
+> python.3.6 database/db_init.py
 
+#### Try services
+
+TO WRITE
 
 ## To do
 
