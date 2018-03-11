@@ -1,5 +1,6 @@
 import requests
 
+hostname = "http://52.221.231.209:8000"
 user_id_for_test = None
 estate_id_for_test = None
 headers = {
@@ -11,7 +12,7 @@ def test_ping():
     """
     Basic ping pong test
     """
-    url = "http://127.0.0.1:5000/ping"
+    url =  hostname + "/ping"
     response = requests.request("GET", url)
     assert response.json()['status'] == 200
     print("Test - Ping - SUCCESS")
@@ -25,7 +26,7 @@ def test_create_user():
     headers = {
         'Content-Type': "application/json",
     }
-    url = "http://127.0.0.1:5000/userapi"
+    url = hostname + "/userapi"
 
     payload = "{\n\"first_name\":\"Jean\",\n\"last_name\":\"Bertrand\",\n\"birth_date\":\"1959-12-12\"\n}"
     response = requests.request("POST", url, data=payload, headers=headers)
@@ -42,7 +43,7 @@ def test_modify_user():
     headers = {
         'Content-Type': "application/json",
     }
-    url = "http://127.0.0.1:5000/userapi"
+    url = hostname + "/userapi"
 
     payload = "{\n\"id\" : \"" + user_id_for_test + \
         "\",\n\"birth_date\":\"2000-12-12\"\n}"
@@ -58,7 +59,7 @@ def test_modify_user_invalid_uuid():
     Modify user info with invalid uuid 
     """
     global headers, user_id_for_test
-    url = "http://127.0.0.1:5000/userapi"
+    url = hostname + "/userapi"
 
     payload = "{\n\"id\" : \"" + \
         str(0) + "\",\n\"birth_date\":\"2000-12-12\"\n}"
@@ -72,7 +73,7 @@ def test_create_estate():
     Create estate with valid inputs 
     """
     global headers, user_id_for_test, estate_id_for_test
-    url = "http://127.0.0.1:5000/estateapi"
+    url = hostname + "/estateapi"
 
     payload = "{\n\"creator_uuid\": \"" + \
         str(user_id_for_test) + "\",\n\"city\": \"Paris\",\n\"nb_rooms\": 2,\n\"description\": \"Nice 2-room flat located in city center next to Gardens\",\n\"rooms_description\": \"1 bedroom, one kitchen\",\n\"owner\": \"Jean Philippe\"\n}"
@@ -87,7 +88,7 @@ def test_modify_estate():
     Create estate with valid user uuid
     """
     global headers, user_id_for_test, estate_id_for_test
-    url = "http://127.0.0.1:5000/estateapi"
+    url = hostname + "/estateapi"
 
     payload = "{\n\"id\": \"" + \
         str(estate_id_for_test) + "\",\n\"creator_uuid\": \"" + \
@@ -103,7 +104,7 @@ def test_modify_estate_invalid_user():
     Create estate with invalid user uuid
     """
     global headers, user_id_for_test, estate_id_for_test
-    url = "http://127.0.0.1:5000/estateapi"
+    url = hostname + "/estateapi"
 
     payload = "{\n\"id\": \"" + \
         str(estate_id_for_test) + "\",\n\"creator_uuid\": \"" + \
@@ -118,7 +119,7 @@ def test_modify_estate_invalid_estate_uuid():
     Create estate with invalid estate uuid
     """
     global headers, user_id_for_test, estate_id_for_test
-    url = "http://127.0.0.1:5000/estateapi"
+    url = hostname + "/estateapi"
 
     payload = "{\n\"id\": \"" + \
         str(0) + "\",\n\"creator_uuid\": \"" + \
@@ -134,7 +135,7 @@ def test_listing_per_city():
     Get listing
     """
     global headers, user_id_for_test, estate_id_for_test
-    url = "http://127.0.0.1:5000/estateapi/Paris"
+    url = hostname + "/estateapi/Paris"
 
     response = requests.request("GET", url)
     assert response.json()['status'] == 200

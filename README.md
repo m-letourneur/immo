@@ -337,13 +337,20 @@ Adjust the path to directory (line 4) and run in console:
 
 ## Tests
 
-Tests written in tests/test_.py to run basic functions of the API
-> python3.6 test/test_.py
+Tests written in tests/test_local.py to run basic functions of the local API
+> python3.6 test/test_local.py
+
+To test the cloud version
+> python3.6 test/test_cloud.py
+
 
 ## Cloud services
 
-TO WRITE
+We deployed the API in the cloud using one AWS EC2 instance and Docker.
+The docker file is in the cloud/ directory.
 
-## To do
+	HOSTNAME = 52.221.231.209:8000
 
-- host api in the cloud
+Example
+
+	curl -X GET http://52.221.231.209:8000/estateapi/caen
