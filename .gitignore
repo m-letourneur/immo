@@ -2,3 +2,9 @@
 
 #Compiled python
 *.pyc
+
+# Database
+database/immodb.db
+
+# Migration files
+models/migrations/
