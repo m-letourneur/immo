@@ -26,4 +26,5 @@ manager = Manager(app)
 # Add the command for the database
 manager.add_command('db', MigrateCommand)
 
+# import endpoints
 import ping, userapi, estateapi

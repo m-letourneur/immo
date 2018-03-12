@@ -1,5 +1,6 @@
 import uuid
 from app_backend import db
+from flask_sqlalchemy import sqlalchemy as sqla
 
 
 class Estate(db.Model):
@@ -17,7 +18,8 @@ class Estate(db.Model):
 
     id = db.Column(db.Integer, primary_key=True,
                    default=lambda: uuid.uuid4().hex)
-    creator_uuid = db.Column(db.Integer, nullable=False)
+    creator_uuid = db.Column(
+        db.Integer, sqla.schema.ForeignKey("users.id"), nullable=False)
     city = db.Column(db.String(255), nullable=False)
     nb_rooms = db.Column(db.Integer, nullable=False)
     description = db.Column(db.String(255), nullable=True)
@@ -76,7 +78,7 @@ class Estate(db.Model):
         Returns
         -------
         _ : str
-            Estate's uuid, creator's uuid, description, city, number of rooms, 
+            Estate's uuid, creator's uuid, city, description, number of rooms, 
             rooms' description, owner
         """
         return ('<Estate uuid = %s, creator_uuid = %s, description = %s, '

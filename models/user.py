@@ -22,27 +22,27 @@ class User(db.Model):
 
     def __init__(self, first_name, last_name, birth_date):
         """
-		Initialization of the attributes when one instance is created
+        Initialization of the attributes when one instance is created
 
-		Parameters
-		----------
-		first_name: str
-			First name
-		last_name: str
-			Last name
-		birth_date: str, (format 'yyyy-mm-dd')
-			Date of birth
+        Parameters
+        ----------
+        first_name: str
+            First name
+        last_name: str
+            Last name
+        birth_date: str, (format 'yyyy-mm-dd')
+            Date of birth
 
-		Attributes
-		----------
-		id: int
-			UUID
-		first_name: str
-			First name
-		last_name: str
-			Last name
-		birth_date: str, (format 'yyyy-mm-dd')
-			Date of birth
+        Attributes
+        ----------
+        id: int
+            UUID
+        first_name: str
+            First name
+        last_name: str
+            Last name
+        birth_date: str, (format 'yyyy-mm-dd')
+            Date of birth
         """
         self.first_name = first_name.lower()
         self.last_name = last_name.lower()
@@ -55,7 +55,7 @@ class User(db.Model):
         Returns
         -------
         _ : str
-        	User's uuid, first name, last name, date of birth
+            User's uuid, first name, last name, date of birth
         """
         return ('<User: uuid = %s, First Name = %s, Last Name = %s, '
                 + 'Birth date = %s>') % (self.id, self.first_name,

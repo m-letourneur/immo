@@ -12,7 +12,8 @@ CREATE TABLE estates(
 	nb_rooms INT NOT NULL,
 	description TEXT,
 	rooms_description TEXT,
-	owner TEXT
+	owner TEXT,
+	CONSTRAINT creator_uuid_fk FOREIGN KEY(creator_uuid) REFERENCES users (id)
 	);
 
 .mode csv
